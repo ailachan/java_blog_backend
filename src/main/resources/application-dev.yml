@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog_test?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: '123456'
+  servlet:
+    multipart:
+      max-request-size: 500MB
+      max-file-size: 50MB
+
+server:
+  port: 9090
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+# 上传图片保存路径
+img.dir: C:\Users\aila\Downloads\Compressed\blogimg
+
+logging:
+  level:
+    root: info
+    com.axiv548: debug
+  file:
+    path: log
