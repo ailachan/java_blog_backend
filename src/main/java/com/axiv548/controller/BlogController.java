@@ -2,6 +2,8 @@ package com.axiv548.controller;
 
 import com.axiv548.entity.Blogs;
 import com.axiv548.service.BlogService;
+import com.axiv548.service.UserService;
+import com.axiv548.service.UserServiceImpl;
 import com.axiv548.util.AjaxResponse;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("blogs")
 public class BlogController {
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     BlogService blogService;
@@ -175,6 +180,16 @@ public class BlogController {
         AjaxResponse ajaxResponse = new AjaxResponse().success("删除成功");
         return ajaxResponse;
 
+    }
+
+    /**
+     * 查询blog作者
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "selectUserById/{id}",method = RequestMethod.GET)
+    public AjaxResponse selectUserById(@PathVariable Integer id){
+        return new AjaxResponse().success(userService.selectUserById(id),"查询成功");
     }
 
 }

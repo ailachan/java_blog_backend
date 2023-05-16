@@ -3,10 +3,13 @@ package com.axiv548.util;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.impl.JWTParser;
+import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -29,7 +32,7 @@ public class JWTUtils {
         map.forEach((k, v)->{
            builder.withClaim(k, v);
         });
-        String token = builder.withExpiresAt(instance.getTime())
+        String token = builder.withExpiresAt(instance.getTime())//token过期时间为1天
                 .sign(Algorithm.HMAC256(SIGN));
 
         return token;
@@ -40,5 +43,17 @@ public class JWTUtils {
         return JWT.require(Algorithm.HMAC256(SIGN)).build().verify(token);
     }
 
+    // 解析JWT令牌
+    // 解析JWT令牌
+    public static Map<String, String> parseToken(String token) {
+        Algorithm algorithm = Algorithm.HMAC256(SIGN);
+        DecodedJWT decodedJWT = JWT.require(algorithm).build().verify(token);
 
+        Map<String, String> data = new HashMap<>();
+        for (Map.Entry<String, Claim> entry : decodedJWT.getClaims().entrySet()) {
+            data.put(entry.getKey(), entry.getValue().asString());
+        }
+
+        return data;
+    }
 }

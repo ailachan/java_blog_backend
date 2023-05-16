@@ -16,4 +16,6 @@ public interface UserDao {
 
 //    用户登录
     User login(Map<String, String> name_password);
+
+    User selectUserById(Integer id);
 }

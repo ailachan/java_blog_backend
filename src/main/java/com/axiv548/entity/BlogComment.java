@@ -54,4 +54,5 @@ public class BlogComment {
     private Integer blog_id;
 
 
+    private String commit_avatar;
 }

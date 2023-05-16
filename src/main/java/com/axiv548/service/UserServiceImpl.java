@@ -36,8 +36,14 @@ public class UserServiceImpl implements UserService {
             map.put("user_name", userDB.getUser_name());
             map.put("avatar",userDB.getUser_avatar());
             map.put("token", token);
+            map.put("github_link",userDB.getUser_github_link());
         }
         return map;
 
+    }
+
+    @Override
+    public User selectUserById(Integer id) {
+        return userDao.selectUserById(id);
     }
 }

@@ -38,6 +38,9 @@ public class User {
      */
     private String user_email;
 
+
+    private String user_github_link;
+
     /**
      * 用户头像地址
      */

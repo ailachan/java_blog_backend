@@ -38,7 +38,6 @@ public class CommentController {
             blogComment.setComment_admin(false);
         } else {
             blogComment.setComment_admin(true);
-            blogComment.setComment_nickname("axiV548");
         }
         commentService.postComment(blogComment);
         AjaxResponse ajaxResponse = new AjaxResponse().success("添加成功");

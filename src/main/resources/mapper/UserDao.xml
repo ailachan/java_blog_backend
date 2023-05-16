@@ -6,4 +6,8 @@
         select * from user where user_name=#{user_name} and user_password=#{user_password}
     </select>
 
+    <select id="selectUserById" parameterType="java.lang.Integer" resultType="com.axiv548.entity.User">
+        select *
+        from user where user_id = #{id};
+    </select>
 </mapper>

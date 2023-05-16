@@ -13,4 +13,6 @@ import java.util.Map;
 public interface UserService {
 
     Map<String, Object> login(Map<String, String> name_password);
+
+    User selectUserById(Integer id);
 }
