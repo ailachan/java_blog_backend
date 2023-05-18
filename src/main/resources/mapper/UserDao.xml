@@ -6,8 +6,15 @@
         select * from user where user_name=#{user_name} and user_password=#{user_password}
     </select>
 
+    <!--排除密码字段-->
     <select id="selectUserById" parameterType="java.lang.Integer" resultType="com.axiv548.entity.User">
-        select *
-        from user where user_id = #{id};
+        select user_id
+             , user_name
+             , user_email
+             , user_avatar
+             , user_group
+             , user_github_link
+        from user
+        where user_id = #{id};
     </select>
 </mapper>

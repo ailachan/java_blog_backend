@@ -4,7 +4,8 @@
 
 <!--    查寻所有文章-->
     <select id="getBlog" resultType="java.util.Map">
-        select blog_id, blog_title, blog_description, blog_first_img, blog_update_time, blog_views
+<!--增加使其能查到userId-->
+        select blog_id, blog_title, blog_description, blog_first_img, blog_update_time, blog_views,user_id
         from blogs
         where blog_public = 1 and blog_release = 1
         order by blog_update_time desc, blog_id desc

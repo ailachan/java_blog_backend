@@ -2,6 +2,7 @@ package com.axiv548.service;
 
 import com.axiv548.dao.BlogDao;
 import com.axiv548.dao.TypeDao;
+import com.axiv548.dao.UserDao;
 import com.axiv548.entity.BlogTag;
 import com.axiv548.entity.Blogs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.*;
  */
 
 @Service
-public class BlogServiceImpl implements BlogService{
+public class BlogServiceImpl implements BlogService {
 
     @Autowired
     BlogDao blogDao;
@@ -24,16 +25,21 @@ public class BlogServiceImpl implements BlogService{
     @Autowired
     TypeDao typeDao;
 
+    @Autowired
+    UserDao userDao;
+
 
     @Override
     public List<Map<String, Object>> getBlog(Integer page, Integer size, Integer pageSize) {
 //        每页条数
-        List<Map<String, Object>> list = blogDao.getBlog((page-1)*pageSize, pageSize);
+        List<Map<String, Object>> list = blogDao.getBlog((page - 1) * pageSize, pageSize);
         List<Map<String, Object>> newList = new ArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {
             Map<String, Object> value = list.get(i);
             value.put("tags", typeDao.getTagByBlogId((Integer) value.get("blog_id")));
+            //为每篇文章追加作者信息
+            value.put("blogAuthor", userDao.selectUserById((Integer) value.get("user_id")));
             newList.add(value);
         }
         return newList;
@@ -59,12 +65,12 @@ public class BlogServiceImpl implements BlogService{
 
     @Override
     public List<Map<String, Object>> adminGetBlog(Integer page, Integer size, Integer pageSize) {
-        List<Map<String, Object>> list = blogDao.adminGetBlog((page-1)*pageSize, pageSize);
+        List<Map<String, Object>> list = blogDao.adminGetBlog((page - 1) * pageSize, pageSize);
         return list;
     }
 
     @Override
-    public Map<String, Object>  adminGetBlogById(Integer id) {
+    public Map<String, Object> adminGetBlogById(Integer id) {
 
         Map<String, Object> map = new HashMap(blogDao.adminGetBlogById(id));
         map.put("type_tags", typeDao.getTagByBlogId(id));
@@ -82,7 +88,7 @@ public class BlogServiceImpl implements BlogService{
 //        清空文章标签
         blogDao.deleteBlogTag(blogs.getBlog_id());
 
-        for(Integer tag_id: tags){
+        for (Integer tag_id : tags) {
             BlogTag blogTag = new BlogTag();
             blogTag.setBlog_id(blogs.getBlog_id());
             blogTag.setTag_id(tag_id);
@@ -104,7 +110,7 @@ public class BlogServiceImpl implements BlogService{
 //        清空文章标签
         blogDao.deleteBlogTag(blogs.getBlog_id());
 
-        for(Integer tag_id: tags){
+        for (Integer tag_id : tags) {
             BlogTag blogTag = new BlogTag();
             blogTag.setBlog_id(blogs.getBlog_id());
             blogTag.setTag_id(tag_id);

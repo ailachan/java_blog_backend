@@ -5,6 +5,7 @@ import com.axiv548.service.BlogService;
 import com.axiv548.service.UserService;
 import com.axiv548.service.UserServiceImpl;
 import com.axiv548.util.AjaxResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +24,7 @@ import java.util.UUID;
  * @date 2021/2/28 16:29
  */
 @RestController
+@Slf4j
 @RequestMapping("blogs")
 public class BlogController {
 
@@ -43,7 +45,6 @@ public class BlogController {
         Integer blogSize = blogService.getBlogCount();
         String size = blogSize.toString();
         List<Map<String, Object>> list= blogService.getBlog(page, blogSize, pageSize);
-
         AjaxResponse ajaxResponse;
         if (!list.isEmpty()) {
             ajaxResponse = new AjaxResponse().success(list, "查询成功", size);
