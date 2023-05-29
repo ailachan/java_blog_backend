@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.axiv548.dao.CommentDao">
+<mapper namespace="xyz.angelbeats.dao.CommentDao">
 
     <!--    查询文章评论-->
     <select id="getCommentByBlogId" parameterType="java.lang.Integer" resultType="java.util.Map">
@@ -11,7 +11,7 @@
     </select>
 
 <!--    添加文章评论-->
-    <insert id="postComment" parameterType="com.axiv548.entity.BlogComment" useGeneratedKeys="true" keyProperty="comment_id">
+    <insert id="postComment" parameterType="xyz.angelbeats.entity.BlogComment" useGeneratedKeys="true" keyProperty="comment_id">
 <if test="commit_avatar != null">
     INSERT INTO `blog_comment`(`comment_admin`, `comment_content`, `comment_email`, `comment_nickname`, `comment_create_time`, `blog_id`,`commit_avatar`)
     VALUES (#{comment_admin}, #{comment_content}, #{comment_email}, #{comment_nickname}, #{comment_create_time}, #{blog_id}, #{commit_avatar});
@@ -23,7 +23,7 @@
     </insert>
 
 <!--    修改评论-->
-    <update id="putComment" parameterType="com.axiv548.entity.BlogComment">
+    <update id="putComment" parameterType="xyz.angelbeats.entity.BlogComment">
       UPDATE `blog_comment`
       SET `comment_admin` = #{comment_admin}, `comment_content` = #{comment_content}, `comment_email` = #{comment_email}, `comment_nickname` = #{comment_nickname}, `comment_create_time` = #{comment_create_time}, `blog_id` = #{blog_id},`commit_avatar` = #{commit_avatar}
       WHERE `comment_id` = #{comment_id};

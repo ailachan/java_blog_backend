@@ -14,12 +14,12 @@ server:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
 
-# 上传图片保存路径
-img.dir: C:\Users\aila\Downloads\Compressed\blogimg
+# 上传图片保存路径,未打包以项目路径为基准,打包则以运行目录为基准
+img.dir: ${user.dir}/blogimg
 
 logging:
   level:
     root: info
-    com.axiv548: debug
+    xyz.angelbeats: debug
   file:
     path: log

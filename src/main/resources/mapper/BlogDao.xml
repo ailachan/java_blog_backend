@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.axiv548.dao.BlogDao">
+<mapper namespace="xyz.angelbeats.dao.BlogDao">
 
 <!--    查寻所有文章-->
     <select id="getBlog" resultType="java.util.Map">
@@ -52,7 +52,7 @@
 
 
     <!--    新增文章-->
-    <insert id="saveBlog" parameterType="com.axiv548.entity.Blogs" useGeneratedKeys="true" keyProperty="blog_id">
+    <insert id="saveBlog" parameterType="xyz.angelbeats.entity.Blogs" useGeneratedKeys="true" keyProperty="blog_id">
         INSERT INTO `blogs`(`blog_id`, `blog_title`, `blog_content`, `blog_description`, `blog_update_time`, `blog_views`, `blog_comment`, `blog_public`, `blog_release`, `blog_recommend`, `blog_first_img`, `user_id`)
         VALUES (null, #{blog_title}, #{blog_content}, #{blog_description}, #{blog_update_time}, #{blog_views}, #{blog_comment}, #{blog_public}, #{blog_release}, #{blog_recommend}, #{blog_first_img}, #{user_id});
     </insert>
@@ -63,7 +63,7 @@
     </delete>
 
     <!--    修改文章-->
-    <update id="putBlog" parameterType="com.axiv548.entity.Blogs">
+    <update id="putBlog" parameterType="xyz.angelbeats.entity.Blogs">
         UPDATE `blogs`
         SET `blog_title` = #{blog_title}, `blog_content` = #{blog_content}, `blog_description` = #{blog_description}, `blog_update_time` = #{blog_update_time}, `blog_views` = #{blog_views}, `blog_comment` = #{blog_comment}, `blog_public` = #{blog_public}, `blog_release` = #{blog_release}, `blog_recommend` = #{blog_recommend}, `blog_first_img` = #{blog_first_img}, `user_id` = #{user_id}
         WHERE `blog_id` = #{blog_id};
@@ -82,7 +82,7 @@
     </delete>
 
     <!--    绑定文章分类标签-->
-    <insert id="postBlogTag" parameterType="com.axiv548.entity.BlogTag">
+    <insert id="postBlogTag" parameterType="xyz.angelbeats.entity.BlogTag">
         INSERT INTO `blog_tag`(`blog_id`, `tag_id`) VALUES (#{blog_id}, #{tag_id});
     </insert>
 

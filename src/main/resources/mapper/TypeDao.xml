@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.axiv548.dao.TypeDao">
+<mapper namespace="xyz.angelbeats.dao.TypeDao">
 
     <!--    查询分类，并添加该分类对应文章总数-->
     <select id="getType" resultType="java.util.Map">
@@ -34,7 +34,7 @@
     </select>
 
     <!--    新增分类-->
-    <insert id="postType" parameterType="com.axiv548.entity.Types">
+    <insert id="postType" parameterType="xyz.angelbeats.entity.Types">
         INSERT INTO `types`(`type_tag_name`, `type_parent_id`, `type_tag_level`) VALUES (#{type_tag_name}, #{type_parent_id}, #{type_tag_level});
     </insert>
 
@@ -44,7 +44,7 @@
     </delete>
 
 <!--    修改分类-->
-    <update id="putType" parameterType="com.axiv548.entity.Types">
+    <update id="putType" parameterType="xyz.angelbeats.entity.Types">
         UPDATE `types`
         SET `type_tag_name` = #{type_tag_name}, `type_parent_id` = #{type_parent_id}, `type_tag_level` = #{type_tag_level}
         WHERE `type_tag_id` = #{type_tag_id};
@@ -61,8 +61,9 @@
     </select>
 
 <!--    根据分类标签查询文章-->
+<!--    增加userId字段-->
     <select id="getBlogByTag" parameterType="java.lang.Integer" resultType="java.util.Map">
-        select blogs.blog_id, blogs.blog_title, blogs.blog_description, blogs.blog_first_img, blogs.blog_update_time, blogs.blog_views
+        select blogs.blog_id, blogs.blog_title, blogs.blog_description, blogs.blog_first_img, blogs.blog_update_time, blogs.blog_views,blogs.user_id
         from blog_tag
         join blogs on blog_tag.blog_id=blogs.blog_id
         join types on blog_tag.tag_id=types.type_tag_id

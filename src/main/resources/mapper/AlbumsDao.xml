@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.axiv548.dao.AlbumsDao">
+<mapper namespace="xyz.angelbeats.dao.AlbumsDao">
 
     <!--    查询相册-->
-    <select id="getAlbums" resultType="com.axiv548.entity.Albums">
+    <select id="getAlbums" resultType="xyz.angelbeats.entity.Albums">
         select * from albums;
     </select>
 
     <!--    根据ID查相册信息-->
-    <select id="getAlbumById" resultType="com.axiv548.entity.Albums">
+    <select id="getAlbumById" resultType="xyz.angelbeats.entity.Albums">
         select * from albums where `album_id` = #{album_id};
     </select>
 
 <!--    创建相册-->
-    <insert id="saveAlbums" parameterType="com.axiv548.entity.Albums">
+    <insert id="saveAlbums" parameterType="xyz.angelbeats.entity.Albums">
         INSERT INTO `albums`(`album_name`, `album_cover`, `album_introduction`, `album_create_time`, `album_level`, `album_type`)
         VALUES (#{album_name}, #{album_cover}, #{album_introduction}, #{album_create_time}, #{album_level}, #{album_type});
     </insert>
 
 <!--    修改相册-->
-    <update id="putAlbums" parameterType="com.axiv548.entity.Albums">
+    <update id="putAlbums" parameterType="xyz.angelbeats.entity.Albums">
         UPDATE `albums`
         SET `album_name` = #{album_name}, `album_cover` = #{album_cover}, `album_introduction` = #{album_introduction}, `album_create_time` = #{album_create_time}, `album_level` = #{album_level}, `album_type` = #{album_type}
         WHERE `album_id` = #{album_id};
@@ -37,7 +37,7 @@
     </select>
 
     <!--    查询相册内的照片-->
-    <select id="getPhotos" resultType="com.axiv548.entity.Photos">
+    <select id="getPhotos" resultType="xyz.angelbeats.entity.Photos">
         select photo_id, photo_name, photo_save_name, photo_introduction, photo_filming_time, albums_tag
         from photos
         where photos.albums_tag = #{album_id}
@@ -50,19 +50,19 @@
     </select>
 
     <!--    根据ID查照片信息-->
-    <select id="getPhotoById" resultType="com.axiv548.entity.Photos">
+    <select id="getPhotoById" resultType="xyz.angelbeats.entity.Photos">
         select * from photos where `photo_id` = #{photo_id};
     </select>
 
 
     <!--    添加照片-->
-    <insert id="savePhotos" parameterType="com.axiv548.entity.Photos">
+    <insert id="savePhotos" parameterType="xyz.angelbeats.entity.Photos">
         INSERT INTO `photos`(`photo_name`, `photo_introduction`, `photo_filming_time`, `albums_tag`, `photo_save_name`)
         VALUES (#{photo_name}, #{photo_introduction}, #{photo_filming_time}, #{albums_tag}, #{photo_save_name});
     </insert>
 
 <!--    修改照片-->
-    <update id="putPhotos" parameterType="com.axiv548.entity.Photos">
+    <update id="putPhotos" parameterType="xyz.angelbeats.entity.Photos">
         UPDATE `photos`
         SET `photo_name` = #{photo_name}, `photo_introduction` = #{photo_introduction}, `photo_filming_time` = #{photo_filming_time}, `albums_tag` = #{albums_tag}
         WHERE `photo_id` = #{photo_id};
