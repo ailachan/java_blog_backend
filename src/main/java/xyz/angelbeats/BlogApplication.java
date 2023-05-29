@@ -13,18 +13,18 @@ public class BlogApplication {
         SpringApplication.run(BlogApplication.class, args);
         System.out.println("sdddsd");
         String userDir = System.getProperty("user.dir");
-        if (!new File(userDir+"/wblo gimg/").exists()) {
-            File file = new File("${user.dir}/blogimg/");
+        if (!new File(userDir+"/blogimg/").exists()) {
+            File file = new File(userDir+"/blogimg/");
             file.mkdir();
         }
-        if (!new File("${user.dir}/blogimg/albumImg/").exists())
-            new File("${user.dir}/blogimg/albumImg/").mkdir();
-        if (!new File("${user.dir}/blogimg/contentImg/").exists())
-            new File("${user.dir}/blogimg/contentImg/").mkdir();
-        if (!new File("${user.dir}/blogimg/firstImg/").exists())
-            new File("${user.dir}/blogimg/firstImg/").mkdir();
-        if (!new File("${user.dir}/blogimg/photoImg/").exists())
-            new File("${user.dir}/blogimg/photoImg/").mkdir();
+        if (!new File(userDir+"/blogimg/albumImg/").exists())
+            new File(userDir+"/blogimg/albumImg/").mkdir();
+        if (!new File(userDir+"/blogimg/contentImg/").exists())
+            new File(userDir+"/blogimg/contentImg/").mkdir();
+        if (!new File(userDir+"/blogimg/firstImg/").exists())
+            new File(userDir+"/blogimg/firstImg/").mkdir();
+        if (!new File(userDir+"/blogimg/photoImg/").exists())
+            new File(userDir+"/blogimg/photoImg/").mkdir();
     }
 
 }
